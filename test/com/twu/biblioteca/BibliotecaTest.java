@@ -7,12 +7,14 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by chenbojian on 7/23/15.
  */
-public class BibliotecaAppTest{
+public class BibliotecaTest {
 
     @Test
     public void should_get_welcome_message() {
-        BibliotecaApp bibliotecaApp = new BibliotecaApp();
-        assertEquals(bibliotecaApp.welcomeCustomer(), "Welcome to Biblioteca!");
+        Biblioteca biblioteca = new Biblioteca();
+        assertEquals(biblioteca.welcomeCustomer(), "Welcome to Biblioteca!");
     }
+
+
 
 }
