@@ -50,11 +50,12 @@ public class BibliotecaTest {
     @Test
     public void should_have_option_with_content_as_main_menu() {
         assertNotNull(biblioteca.getMainMenu().getOptions());
+        assertEquals(biblioteca.getMainMenu().getOptions().get(0), "List Books");
     }
 
     @Test
     public void should_valid_option_correctly() {
-        assertTrue(biblioteca.getMainMenu().isValidOption("1"));
+        assertTrue(biblioteca.getMainMenu().isValidOption("List Books"));
         assertFalse(biblioteca.getMainMenu().isValidOption("xxxxx"));
     }
 
