@@ -5,4 +5,8 @@ public class BibliotecaApp {
     public static void main(String[] args) {
         System.out.println("Hello, world!");
     }
+
+    public String welcomeCustomer() {
+        return "Welcome to Biblioteca!";
+    }
 }
