@@ -11,14 +11,14 @@ public class Biblioteca {
     private BibliotecaMenu mainMenu;
 
     public Biblioteca() {
-        books.add(new Book("book1","author1","1991"));
-        books.add(new Book("book2","author1","1991"));
-        books.add(new Book("book3","author1","1991"));
-        books.add(new Book("book4","author1","1991"));
-        books.add(new Book("book5","author1","1991"));
-        books.add(new Book("book6","author1","1991"));
+        books.add(new Book("book1", "author1", "1991"));
+        books.add(new Book("book2", "author1", "1991"));
+        books.add(new Book("book3", "author1", "1991"));
+        books.add(new Book("book4", "author1", "1991"));
+        books.add(new Book("book5", "author1", "1991"));
+        books.add(new Book("book6", "author1", "1991"));
         mainMenu = new BibliotecaMenu();
-        mainMenu.getOptions().add(new MenuOption("1","List all book name"));
+        mainMenu.addOption(new MenuOption("1", "List all book name"));
     }
 
     public String welcomeCustomer() {

@@ -23,10 +23,9 @@ public class BibliotecaMenu {
         return options;
     }
 
-    public void setOptions(List<MenuOption> options) {
-        this.options = options;
+    public void addOption(MenuOption option) {
+        options.add(option);
     }
-
     public boolean isValidOption(String select) {
         for (MenuOption option : options) {
             if (option.getName().equals(select)) {
