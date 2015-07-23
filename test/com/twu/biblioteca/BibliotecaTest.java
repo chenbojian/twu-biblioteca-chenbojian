@@ -39,5 +39,19 @@ public class BibliotecaTest {
         }
     }
 
+    @Test
+    public void should_have_main_menu() {
+        assertNotNull(biblioteca.getMainMenu());
+    }
+
+    @Test
+    public void should_show_main_menu_as_string_in_console() {
+        assertTrue(biblioteca.getMainMenu().show().length() > 0);
+    }
+
+    @Test
+    public void should_have_option_with_content_as_main_menu() {
+        assertNotNull(biblioteca.getMainMenu().getOptions());
+    }
 
 }

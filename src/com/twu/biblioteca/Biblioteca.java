@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class Biblioteca {
     private List<Book> books = new ArrayList<Book>();
+    private BibliotecaMenu mainMenu;
 
     public Biblioteca() {
         books.add(new Book("book1","author1","1991"));
@@ -16,6 +17,8 @@ public class Biblioteca {
         books.add(new Book("book4","author1","1991"));
         books.add(new Book("book5","author1","1991"));
         books.add(new Book("book6","author1","1991"));
+        mainMenu = new BibliotecaMenu();
+        mainMenu.getOptions().add(new MenuOption("1","List all book name"));
     }
 
     public String welcomeCustomer() {
@@ -28,5 +31,13 @@ public class Biblioteca {
 
     public void setBooks(List<Book> books) {
         this.books = books;
+    }
+
+    public BibliotecaMenu getMainMenu() {
+        return mainMenu;
+    }
+
+    public void setMainMenu(BibliotecaMenu mainMenu) {
+        this.mainMenu = mainMenu;
     }
 }
