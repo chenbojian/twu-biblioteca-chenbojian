@@ -27,4 +27,12 @@ public class BibliotecaMenu {
         this.options = options;
     }
 
+    public boolean isValidOption(String select) {
+        for (MenuOption option : options) {
+            if (option.getName().equals(select)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

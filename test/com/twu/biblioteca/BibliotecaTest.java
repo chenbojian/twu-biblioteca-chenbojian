@@ -3,9 +3,7 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by chenbojian on 7/23/15.
@@ -54,4 +52,9 @@ public class BibliotecaTest {
         assertNotNull(biblioteca.getMainMenu().getOptions());
     }
 
+    @Test
+    public void should_valid_option_correctly() {
+        assertTrue(biblioteca.getMainMenu().isValidOption("1"));
+        assertFalse(biblioteca.getMainMenu().isValidOption("xxxxx"));
+    }
 }
