@@ -83,16 +83,30 @@ public class BibliotecaTest {
     @Test
     public void should_checkout_book_correctly() {
         String bookName = biblioteca.getBooks().get(0).getName();
-        int numberOfBooks = biblioteca.getBooks().size();
 
         biblioteca.checkOutBook(bookName);
-        assertEquals(numberOfBooks, biblioteca.getBooks().size() + 1);
         assertEquals(outContent.toString(), "Thank you! Enjoy the book\n");
         outContent.reset();
 
         biblioteca.checkOutBook("not a book");
-        assertEquals(numberOfBooks, biblioteca.getBooks().size() + 1);
-        assertEquals(outContent.toString(),"That book is not available.\n");
+        assertEquals(outContent.toString(), "That book is not available.\n");
 
+    }
+
+    @Test
+    public void should_return_book_correctly() {
+        Book book = biblioteca.getBooks().get(0);
+        book.setCheckedOut(true);
+        String bookName = book.getName();
+        biblioteca.returnBook(bookName);
+        assertEquals(outContent.toString(), "Thank you for returning the book.\n");
+        outContent.reset();
+
+        biblioteca.returnBook(bookName);
+        assertEquals(outContent.toString(), "That is not a valid book to return.\n");
+        outContent.reset();
+
+        biblioteca.returnBook("not a book");
+        assertEquals(outContent.toString(), "That is not a valid book to return.\n");
     }
 }
