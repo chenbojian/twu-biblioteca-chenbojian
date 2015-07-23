@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -29,6 +30,14 @@ public class BibliotecaTest {
 
     }
 
+    @Test
+    public void should_have_name_year_author_in_book() {
+        for (Book book : biblioteca.getBooks()) {
+            assertNotNull(book.getName());
+            assertNotNull(book.getAuthor());
+            assertNotNull(book.getPublishedYear());
+        }
+    }
 
 
 }

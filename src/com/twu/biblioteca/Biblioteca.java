@@ -10,11 +10,12 @@ public class Biblioteca {
     private List<Book> books = new ArrayList<Book>();
 
     public Biblioteca() {
-        books.add(new Book());
-        books.add(new Book());
-        books.add(new Book());
-        books.add(new Book());
-        books.add(new Book());
+        books.add(new Book("book1","author1","1991"));
+        books.add(new Book("book2","author1","1991"));
+        books.add(new Book("book3","author1","1991"));
+        books.add(new Book("book4","author1","1991"));
+        books.add(new Book("book5","author1","1991"));
+        books.add(new Book("book6","author1","1991"));
     }
 
     public String welcomeCustomer() {
