@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by chenbojian on 7/23/15.
@@ -19,6 +20,7 @@ public class Biblioteca {
         books.add(new Book("book6", "author1", "1991"));
         mainMenu = new BibliotecaMenu();
         mainMenu.addOption("List Books");
+        mainMenu.addOption("CheckOut Book");
     }
 
     public String welcomeCustomer() {
@@ -47,9 +49,29 @@ public class Biblioteca {
         }
     }
 
-    public void processOption(String option) {
+    public void processOption(String option, Scanner scanIn) {
         if (mainMenu.getOptions().get(0).equals(option)) {
             listBooksInConsole();
+        }else if (mainMenu.getOptions().get(1).equals(option)) {
+            checkOutInConsole(scanIn);
         }
+    }
+
+    private void checkOutInConsole(Scanner scanIn) {
+        System.out.println("Input book name:");
+        String bookName = scanIn.nextLine().trim();
+        checkOutBook(bookName);
+
+    }
+
+    public void checkOutBook(String bookName) {
+        for (Book book : books) {
+            if (book.getName().equals(bookName)) {
+                System.out.println("Thank you! Enjoy the book");
+                books.remove(book);
+                return;
+            }
+        }
+        System.out.println("That book is not available.");
     }
 }

@@ -80,4 +80,19 @@ public class BibliotecaTest {
         assertTrue(outContent.toString().split("\n").length > 0);
     }
 
+    @Test
+    public void should_checkout_book_correctly() {
+        String bookName = biblioteca.getBooks().get(0).getName();
+        int numberOfBooks = biblioteca.getBooks().size();
+
+        biblioteca.checkOutBook(bookName);
+        assertEquals(numberOfBooks, biblioteca.getBooks().size() + 1);
+        assertEquals(outContent.toString(), "Thank you! Enjoy the book\n");
+        outContent.reset();
+
+        biblioteca.checkOutBook("not a book");
+        assertEquals(numberOfBooks, biblioteca.getBooks().size() + 1);
+        assertEquals(outContent.toString(),"That book is not available.\n");
+
+    }
 }

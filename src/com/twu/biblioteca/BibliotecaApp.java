@@ -13,7 +13,7 @@ public class BibliotecaApp {
             System.out.println(biblioteca.getMainMenu().show());
             String option = scanIn.nextLine().trim();
             if (biblioteca.getMainMenu().isValidOption(option)) {
-                biblioteca.processOption(option);
+                biblioteca.processOption(option, scanIn);
             } else {
                 if (!option.equals("Quit")) {
                     System.out.println("Select a valid option!");
