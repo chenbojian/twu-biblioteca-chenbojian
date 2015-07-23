@@ -1,7 +1,11 @@
 package com.twu.biblioteca;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.junit.Assert.*;
 
@@ -11,10 +15,21 @@ import static org.junit.Assert.*;
 public class BibliotecaTest {
 
     private Biblioteca biblioteca;
+    private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+
 
     @Before
     public void setUp() throws Exception {
         biblioteca = new Biblioteca();
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
+    }
+
+    @After
+    public void complete() {
+        System.setOut(null);
+        System.setErr(null);
     }
 
     @Test
@@ -57,6 +72,12 @@ public class BibliotecaTest {
     public void should_valid_option_correctly() {
         assertTrue(biblioteca.getMainMenu().isValidOption("List Books"));
         assertFalse(biblioteca.getMainMenu().isValidOption("xxxxx"));
+    }
+
+    @Test
+    public void should_list_option() {
+        biblioteca.listBooksInConsole();
+        assertTrue(outContent.toString().split("\n").length > 0);
     }
 
 }

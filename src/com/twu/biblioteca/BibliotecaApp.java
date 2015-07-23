@@ -8,15 +8,21 @@ public class BibliotecaApp {
 
         Biblioteca biblioteca = new Biblioteca();
         System.out.println(biblioteca.welcomeCustomer());
-        System.out.println(biblioteca.getMainMenu().show());
-        Scanner scanIn=new Scanner(System.in);
-        String selection = scanIn.nextLine().trim();
-        if (biblioteca.getMainMenu().isValidOption(selection)) {
-        } else {
-            System.out.println("Sorry! You input error selection!");
+        Scanner scanIn = new Scanner(System.in);
+        while (true) {
+            System.out.println(biblioteca.getMainMenu().show());
+            String option = scanIn.nextLine().trim();
+            if (biblioteca.getMainMenu().isValidOption(option)) {
+                biblioteca.processOption(option);
+            } else {
+                if (!option.equals("Quit")) {
+                    System.out.println("Select a valid option!");
+                } else {
+                    break;
+                }
+            }
         }
         scanIn.close();
     }
-
 
 }

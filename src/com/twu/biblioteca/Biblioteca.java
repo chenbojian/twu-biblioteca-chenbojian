@@ -40,4 +40,16 @@ public class Biblioteca {
     public void setMainMenu(BibliotecaMenu mainMenu) {
         this.mainMenu = mainMenu;
     }
+
+    public void listBooksInConsole() {
+        for (Book book : books) {
+            System.out.println(book.getName());
+        }
+    }
+
+    public void processOption(String option) {
+        if (mainMenu.getOptions().get(0).equals(option)) {
+            listBooksInConsole();
+        }
+    }
 }
