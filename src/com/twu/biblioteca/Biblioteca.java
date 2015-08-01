@@ -25,6 +25,7 @@ public class Biblioteca {
         mainMenu.addOption("List Books", "List Books");
         mainMenu.addOption("Checkout Book", "Checkout Book");
         mainMenu.addOption("Return Book", "Return Book");
+        mainMenu.addOption("List Movies", "List Movies");
     }
 
     public String welcomeCustomer() {
@@ -47,14 +48,6 @@ public class Biblioteca {
         this.mainMenu = mainMenu;
     }
 
-    public void listBooksInConsole() {
-        for (Book book : getBooks()) {
-            if (!book.isCheckedOut()) {
-                System.out.println(book.getName());
-            }
-        }
-    }
-
     public void processOption(String option, Scanner scanIn) {
 
         String operation = mainMenu.getOptions().get(option);
@@ -64,8 +57,26 @@ public class Biblioteca {
             checkOutInConsole(scanIn);
         } else if (operation.equals("Return Book")) {
             returnBookInConsole(scanIn);
+        }else if (operation.equals("List Movies")) {
+            listMoviesInConsole();
         }
 
+    }
+
+    public void listBooksInConsole() {
+        for (Book book : getBooks()) {
+            if (!book.isCheckedOut()) {
+                System.out.println(book.getName());
+            }
+        }
+    }
+
+    public void listMoviesInConsole() {
+        for (Movie movie : getMovies()) {
+            if (!movie.isChecketOut()) {
+                System.out.println(movie.getName());
+            }
+        }
     }
 
     public void returnBookInConsole(Scanner scanIn) {
