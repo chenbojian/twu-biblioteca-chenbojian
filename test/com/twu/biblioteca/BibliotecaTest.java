@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.*;
@@ -121,5 +122,17 @@ public class BibliotecaTest {
         map.put("4", 4);
 
         assertEquals(map.get("1").intValue(), 1);
+    }
+
+    @Test
+    public void should_list_movies_successful() {
+        List<Movie> movies = biblioteca.getMovies();
+        assertNotNull(movies);
+        Movie movie = movies.get(0);
+        assertEquals(movie.getClass(), Movie.class);
+        assertNotNull(movie.getName());
+        assertNotNull(movie.getYear());
+        assertNotNull(movie.getDirector());
+        assertNotNull(movie.getRating());
     }
 }

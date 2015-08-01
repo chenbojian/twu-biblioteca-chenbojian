@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class Biblioteca {
     private List<Book> books = new ArrayList<Book>();
     private BibliotecaMenu mainMenu;
+    private List<Movie> movies = new ArrayList<Movie>();
 
     public Biblioteca() {
         books.add(new Book("book1", "author1", "1991"));
@@ -18,6 +19,8 @@ public class Biblioteca {
         books.add(new Book("book4", "author1", "1991"));
         books.add(new Book("book5", "author1", "1991"));
         books.add(new Book("book6", "author1", "1991"));
+        movies.add(new Movie("movie1", "1991", "director1", 0));
+        movies.add(new Movie("movie2", "1991", "director2", 9));
         mainMenu = new BibliotecaMenu();
         mainMenu.addOption("List Books", "List Books");
         mainMenu.addOption("Checkout Book", "Checkout Book");
@@ -99,5 +102,13 @@ public class Biblioteca {
         }
         System.out.println("That is not a valid book to return.");
 
+    }
+
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
     }
 }
