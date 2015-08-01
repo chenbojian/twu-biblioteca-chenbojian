@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -15,7 +17,7 @@ import static org.junit.Assert.*;
 public class BibliotecaTest {
 
     private Biblioteca biblioteca;
-    private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private ByteArrayOutputStream outContent = new ByteArrayOutputStream();//have \r\n in windows
     private ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 
 
@@ -65,7 +67,7 @@ public class BibliotecaTest {
     @Test
     public void should_have_option_with_content_as_main_menu() {
         assertNotNull(biblioteca.getMainMenu().getOptions());
-        assertEquals(biblioteca.getMainMenu().getOptions().get(0), "List Books");
+        assertEquals(biblioteca.getMainMenu().getOptions().get("List Books"), "List Books");
     }
 
     @Test
@@ -85,11 +87,11 @@ public class BibliotecaTest {
         String bookName = biblioteca.getBooks().get(0).getName();
 
         biblioteca.checkOutBook(bookName);
-        assertEquals(outContent.toString(), "Thank you! Enjoy the book\n");
+        assertTrue(outContent.toString().contains("Thank you! Enjoy the book"));
         outContent.reset();
 
         biblioteca.checkOutBook("not a book");
-        assertEquals(outContent.toString(), "That book is not available.\n");
+        assertTrue(outContent.toString().contains("That book is not available."));
 
     }
 
@@ -99,14 +101,25 @@ public class BibliotecaTest {
         book.setCheckedOut(true);
         String bookName = book.getName();
         biblioteca.returnBook(bookName);
-        assertEquals(outContent.toString(), "Thank you for returning the book.\n");
+        assertTrue(outContent.toString().contains("Thank you for returning the book."));
         outContent.reset();
 
         biblioteca.returnBook(bookName);
-        assertEquals(outContent.toString(), "That is not a valid book to return.\n");
+        assertTrue(outContent.toString().contains("That is not a valid book to return."));
         outContent.reset();
 
         biblioteca.returnBook("not a book");
-        assertEquals(outContent.toString(), "That is not a valid book to return.\n");
+        assertTrue(outContent.toString().contains("That is not a valid book to return."));
+    }
+
+    @Test
+    public void how_map_work() {
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        map.put("1", 1);
+        map.put("2", 2);
+        map.put("3", 3);
+        map.put("4", 4);
+
+        assertEquals(map.get("1").intValue(), 1);
     }
 }

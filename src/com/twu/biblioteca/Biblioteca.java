@@ -19,9 +19,9 @@ public class Biblioteca {
         books.add(new Book("book5", "author1", "1991"));
         books.add(new Book("book6", "author1", "1991"));
         mainMenu = new BibliotecaMenu();
-        mainMenu.addOption("List Books");
-        mainMenu.addOption("Checkout Book");
-        mainMenu.addOption("Return Book");
+        mainMenu.addOption("List Books", "List Books");
+        mainMenu.addOption("Checkout Book", "Checkout Book");
+        mainMenu.addOption("Return Book", "Return Book");
     }
 
     public String welcomeCustomer() {
@@ -53,11 +53,13 @@ public class Biblioteca {
     }
 
     public void processOption(String option, Scanner scanIn) {
-        if (mainMenu.getOptions().get(0).equals(option)) {
+
+        String operation = mainMenu.getOptions().get(option);
+        if (operation.equals("List Books")) {
             listBooksInConsole();
-        } else if (mainMenu.getOptions().get(1).equals(option)) {
+        } else if (operation.equals("Checkout Book")) {
             checkOutInConsole(scanIn);
-        } else if (mainMenu.getOptions().get(2).equals(option)) {
+        } else if (operation.equals("Return Book")) {
             returnBookInConsole(scanIn);
         }
     }
