@@ -57,24 +57,31 @@ public class Biblioteca {
             checkOutInConsole(scanIn);
         } else if (operation.equals("Return Book")) {
             returnBookInConsole(scanIn);
-        }else if (operation.equals("List Movies")) {
+        } else if (operation.equals("List Movies")) {
             listMoviesInConsole();
         }
 
     }
 
     public void listBooksInConsole() {
+        System.out.println("Books Info:");
+        System.out.println("Name | Published Year | Author");
+        System.out.println("------------------------------");
         for (Book book : getBooks()) {
             if (!book.isCheckedOut()) {
-                System.out.println(book.getName());
+                System.out.println(book.getName() + " | " + book.getPublishedYear() + " | " + book.getAuthor());
             }
         }
     }
 
     public void listMoviesInConsole() {
+        System.out.println("Movies Info:");
+        System.out.println("Name | Year | Director | Rating");
+        System.out.println("-------------------------------");
         for (Movie movie : getMovies()) {
             if (!movie.isChecketOut()) {
-                System.out.println(movie.getName());
+                System.out.println(movie.getName() + " | " + movie.getYear() + " | " +
+                        movie.getDirector() + " | " + movie.getRating());
             }
         }
     }
