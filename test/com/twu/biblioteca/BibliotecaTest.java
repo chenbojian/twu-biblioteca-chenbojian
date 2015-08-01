@@ -135,4 +135,11 @@ public class BibliotecaTest {
         assertNotNull(movie.getDirector());
         assertNotNull(movie.getRating());
     }
+
+    @Test
+    public void should_checkout_movie_successful() {
+        List<Movie> movies = biblioteca.getMovies();
+        biblioteca.checkOutMovie(movies.get(0).getName());
+        assertTrue(movies.get(0).isCheckedOut());
+    }
 }
