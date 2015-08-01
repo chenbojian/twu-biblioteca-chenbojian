@@ -26,6 +26,7 @@ public class Biblioteca {
         mainMenu.addOption("Checkout Book", "Checkout Book");
         mainMenu.addOption("Return Book", "Return Book");
         mainMenu.addOption("List Movies", "List Movies");
+        mainMenu.addOption("Checkout Movie", "Checkout Movie");
     }
 
     public String welcomeCustomer() {
@@ -54,11 +55,13 @@ public class Biblioteca {
         if (operation.equals("List Books")) {
             listBooksInConsole();
         } else if (operation.equals("Checkout Book")) {
-            checkOutInConsole(scanIn);
+            checkOutBookInConsole(scanIn);
         } else if (operation.equals("Return Book")) {
             returnBookInConsole(scanIn);
         } else if (operation.equals("List Movies")) {
             listMoviesInConsole();
+        }else if (operation.equals("Checkout Movie")) {
+            checkOutMovieInConsole(scanIn);
         }
 
     }
@@ -79,7 +82,7 @@ public class Biblioteca {
         System.out.println("Name | Year | Director | Rating");
         System.out.println("-------------------------------");
         for (Movie movie : getMovies()) {
-            if (!movie.isChecketOut()) {
+            if (!movie.isCheckedOut()) {
                 System.out.println(movie.getName() + " | " + movie.getYear() + " | " +
                         movie.getDirector() + " | " + movie.getRating());
             }
@@ -92,7 +95,24 @@ public class Biblioteca {
         returnBook(bookName);
     }
 
-    public void checkOutInConsole(Scanner scanIn) {
+    public void checkOutMovieInConsole(Scanner scanIn) {
+        System.out.println("Input movie name:");
+        String movieName = scanIn.nextLine().trim();
+        checkOutMovie(movieName);
+    }
+
+    public void checkOutMovie(String movieName) {
+        for (Movie movie : getMovies()) {
+            if (movie.getName().equals(movieName)) {
+                System.out.println("Thank you! Enjoy the movie");
+                movie.setCheckedOut(true);
+                return;
+            }
+        }
+        System.out.println("That movie is not available.");
+    }
+
+    public void checkOutBookInConsole(Scanner scanIn) {
         System.out.println("Input book name:");
         String bookName = scanIn.nextLine().trim();
         checkOutBook(bookName);

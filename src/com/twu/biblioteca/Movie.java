@@ -10,7 +10,7 @@ public class Movie {
     private String year;
     private String director;
     private int rating;
-    private boolean checketOut;
+    private boolean checkedOut;
 
     public Movie(String name, String year, String director, int rating) {
         this.name = name;
@@ -51,11 +51,11 @@ public class Movie {
         this.rating = rating;
     }
 
-    public boolean isChecketOut() {
-        return checketOut;
+    public boolean isCheckedOut() {
+        return checkedOut;
     }
 
-    public void setChecketOut(boolean checketOut) {
-        this.checketOut = checketOut;
+    public void setCheckedOut(boolean checkedOut) {
+        this.checkedOut = checkedOut;
     }
 }
