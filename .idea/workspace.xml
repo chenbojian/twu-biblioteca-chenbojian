@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="029aac47-5bd5-4588-8c35-958304dd84f5" name="Default" comment="test ssh">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/Biblioteca.java" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/Biblioteca.java" />
+    <list default="true" id="029aac47-5bd5-4588-8c35-958304dd84f5" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/BibliotecaMenu.java" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/BibliotecaMenu.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/com/twu/biblioteca/BibliotecaTest.java" afterPath="$PROJECT_DIR$/test/com/twu/biblioteca/BibliotecaTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="biblioteca.iws" />
@@ -40,7 +41,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Biblioteca.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.65489566">
-              <caret line="64" column="8" selection-start-line="64" selection-start-column="8" selection-end-line="64" selection-end-column="8" />
+              <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -660,7 +661,7 @@
       <option name="number" value="Default" />
       <updated>1437631555612</updated>
       <workItem from="1437631556458" duration="17176000" />
-      <workItem from="1438436000347" duration="4021000" />
+      <workItem from="1438436000347" duration="4159000" />
     </task>
     <task id="LOCAL-00001" summary="refactor option from List&lt;String&gt; to Map&lt;String, String&gt;. fix thing to make all test passed in windows because of crlf.">
       <created>1438438780071</created>
@@ -668,11 +669,17 @@
       <option name="project" value="LOCAL" />
       <updated>1438438780071</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="test ssh">
+      <created>1438440074783</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1438440074783</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21197000" />
+    <option name="totallyTimeSpent" value="21335000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
@@ -709,7 +716,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="refactor option from List&lt;String&gt; to Map&lt;String, String&gt;. fix thing to make all test passed in windows because of crlf." />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor option from List&lt;String&gt; to Map&lt;String, String&gt;. fix thing to make all test passed in windows because of crlf." />
+    <MESSAGE value="test ssh" />
+    <option name="LAST_COMMIT_MESSAGE" value="test ssh" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -878,7 +886,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Biblioteca.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.65489566">
-          <caret line="64" column="8" selection-start-line="64" selection-start-column="8" selection-end-line="64" selection-end-column="8" />
+          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
