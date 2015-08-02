@@ -105,15 +105,21 @@ public class BibliotecaTest {
         Book book = biblioteca.getBooks().get(0);
         book.setCheckedOut(true);
         String bookName = book.getName();
-        biblioteca.returnBook(bookName);
+        Scanner scanner = new Scanner(new ByteArrayInputStream(bookName.getBytes()));
+        biblioteca.returnBookInConsole(scanner);
+        scanner.close();
         assertTrue(outContent.toString().contains("Thank you for returning the book."));
         outContent.reset();
 
-        biblioteca.returnBook(bookName);
+        scanner = new Scanner(new ByteArrayInputStream(bookName.getBytes()));
+        biblioteca.returnBookInConsole(scanner);
+        scanner.close();
         assertTrue(outContent.toString().contains("That is not a valid book to return."));
         outContent.reset();
 
-        biblioteca.returnBook("not a book");
+        scanner = new Scanner(new ByteArrayInputStream("not a book".getBytes()));
+        biblioteca.returnBookInConsole(scanner);
+        scanner.close();
         assertTrue(outContent.toString().contains("That is not a valid book to return."));
     }
 

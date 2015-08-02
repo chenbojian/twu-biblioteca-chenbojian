@@ -92,12 +92,6 @@ public class Biblioteca {
         }
     }
 
-    public void returnBookInConsole(Scanner scanIn) {
-        System.out.println("Input book name:");
-        String bookName = scanIn.nextLine().trim();
-        returnBook(bookName);
-    }
-
     public void checkOutMovieInConsole(Scanner scanIn) {
         System.out.println("Input movie name:");
         String movieName = scanIn.nextLine().trim();
@@ -145,15 +139,25 @@ public class Biblioteca {
         return false;
     }
 
-    public void returnBook(String bookName) {
+    public void returnBookInConsole(Scanner scanIn) {
+        System.out.println("Input book name:");
+        String bookName = scanIn.nextLine().trim();
+        if (returnBook(bookName)) {
+            System.out.println("Thank you for returning the book.");
+        } else {
+            System.out.println("That is not a valid book to return.");
+        }
+
+    }
+
+    private boolean returnBook(String bookName) {
         for (Book book : getBooks()) {
             if (book.getName().equals(bookName) && book.isCheckedOut()) {
-                System.out.println("Thank you for returning the book.");
                 book.setCheckedOut(false);
-                return;
+                return true;
             }
         }
-        System.out.println("That is not a valid book to return.");
+        return false;
 
     }
 
