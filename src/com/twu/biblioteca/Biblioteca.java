@@ -29,6 +29,7 @@ public class Biblioteca {
         mainMenu.addOption("Return Book", "Return Book");
         mainMenu.addOption("List Movies", "List Movies");
         mainMenu.addOption("Checkout Movie", "Checkout Movie");
+        mainMenu.addOption("Login", "Login");
         currentUser = new User();
     }
 
@@ -179,5 +180,9 @@ public class Biblioteca {
 
     public User getCurrentUser() {
         return currentUser;
+    }
+
+    public void listOptionsInConsole() {
+        System.out.println((getMainMenu().show()));
     }
 }

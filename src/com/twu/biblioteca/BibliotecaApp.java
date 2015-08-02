@@ -10,7 +10,7 @@ public class BibliotecaApp {
         System.out.println(biblioteca.welcomeCustomer());
         Scanner scanIn = new Scanner(System.in);
         while (true) {
-            System.out.println(biblioteca.getMainMenu().show());
+            biblioteca.listOptionsInConsole();
             String option = scanIn.nextLine().trim();
             if (biblioteca.getMainMenu().isValidOption(option)) {
                 biblioteca.processOption(option, scanIn);

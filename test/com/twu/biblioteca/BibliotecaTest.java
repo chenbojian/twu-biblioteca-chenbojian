@@ -81,8 +81,9 @@ public class BibliotecaTest {
 
     @Test
     public void should_list_option() {
-        biblioteca.listBooksInConsole();
+        biblioteca.listOptionsInConsole();
         assertTrue(outContent.toString().split("\n").length > 0);
+        assertTrue(outContent.toString().contains("Login"));
     }
 
     @Test
