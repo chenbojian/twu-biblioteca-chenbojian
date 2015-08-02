@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * Created by chenbojian on 7/23/15.
- */
 public class Biblioteca {
     private List<Book> books = new ArrayList<Book>();
     private BibliotecaMenu mainMenu;
@@ -30,6 +27,7 @@ public class Biblioteca {
         mainMenu.addOption("List Movies", "List Movies");
         mainMenu.addOption("Checkout Movie", "Checkout Movie");
         mainMenu.addOption("Login", "Login");
+        mainMenu.addOption("Quit", "Quit");
         currentUser = new User();
     }
 
@@ -53,7 +51,7 @@ public class Biblioteca {
         this.mainMenu = mainMenu;
     }
 
-    public void processOption(String option, Scanner scanIn) {
+    public boolean processOption(String option, Scanner scanIn) {
 
         String operation = mainMenu.getOptions().get(option);
         if (operation.equals("List Books")) {
@@ -66,8 +64,11 @@ public class Biblioteca {
             listMoviesInConsole();
         } else if (operation.equals("Checkout Movie")) {
             checkOutMovieInConsole(scanIn);
+        } else if (operation.equals("Quit")) {
+            return false;
         }
 
+        return true;
     }
 
     public void listBooksInConsole() {

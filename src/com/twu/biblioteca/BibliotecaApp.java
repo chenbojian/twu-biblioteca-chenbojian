@@ -13,13 +13,11 @@ public class BibliotecaApp {
             biblioteca.listOptionsInConsole();
             String option = scanIn.nextLine().trim();
             if (biblioteca.getMainMenu().isValidOption(option)) {
-                biblioteca.processOption(option, scanIn);
-            } else {
-                if (!option.equals("Quit")) {
-                    System.out.println("Select a valid option!");
-                } else {
+                if (biblioteca.processOption(option, scanIn)) {
                     break;
                 }
+            } else {
+                System.out.println("Select a valid option!");
             }
         }
         scanIn.close();
