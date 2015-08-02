@@ -87,6 +87,8 @@ public class BibliotecaTest {
 
     @Test
     public void should_checkout_book_correctly() {
+        biblioteca.getCurrentUser().setLogin(true);
+
         String bookName = biblioteca.getBooks().get(0).getName();
         Scanner scanner = new Scanner(new ByteArrayInputStream(bookName.getBytes()));
         biblioteca.checkOutBookInConsole(scanner);

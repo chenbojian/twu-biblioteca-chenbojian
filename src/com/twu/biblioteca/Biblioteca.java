@@ -176,4 +176,8 @@ public class Biblioteca {
     public void setUsers(List<User> users) {
         this.users = users;
     }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
 }
