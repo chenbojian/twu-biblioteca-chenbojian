@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import java.net.UnknownServiceException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,6 +12,7 @@ public class Biblioteca {
     private List<Book> books = new ArrayList<Book>();
     private BibliotecaMenu mainMenu;
     private List<Movie> movies = new ArrayList<Movie>();
+    private List<User> users = new ArrayList<User>();
 
     public Biblioteca() {
         books.add(new Book("book1", "author1", "1991"));
@@ -60,7 +62,7 @@ public class Biblioteca {
             returnBookInConsole(scanIn);
         } else if (operation.equals("List Movies")) {
             listMoviesInConsole();
-        }else if (operation.equals("Checkout Movie")) {
+        } else if (operation.equals("Checkout Movie")) {
             checkOutMovieInConsole(scanIn);
         }
 
@@ -148,5 +150,13 @@ public class Biblioteca {
 
     public void setMovies(List<Movie> movies) {
         this.movies = movies;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

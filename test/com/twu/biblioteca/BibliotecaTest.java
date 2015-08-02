@@ -142,4 +142,9 @@ public class BibliotecaTest {
         biblioteca.checkOutMovie(movies.get(0).getName());
         assertTrue(movies.get(0).isCheckedOut());
     }
+
+    @Test
+    public void should_have_a_user_list() {
+        assertNotNull(biblioteca.getUsers());
+    }
 }
