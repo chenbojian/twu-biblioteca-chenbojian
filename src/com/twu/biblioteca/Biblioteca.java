@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import java.net.UnknownServiceException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,6 +12,7 @@ public class Biblioteca {
     private BibliotecaMenu mainMenu;
     private List<Movie> movies = new ArrayList<Movie>();
     private List<User> users = new ArrayList<User>();
+    private User currentUser;
 
     public Biblioteca() {
         books.add(new Book("book1", "author1", "1991"));
@@ -29,6 +29,7 @@ public class Biblioteca {
         mainMenu.addOption("Return Book", "Return Book");
         mainMenu.addOption("List Movies", "List Movies");
         mainMenu.addOption("Checkout Movie", "Checkout Movie");
+        currentUser = new User();
     }
 
     public String welcomeCustomer() {
@@ -115,21 +116,29 @@ public class Biblioteca {
     }
 
     public void checkOutBookInConsole(Scanner scanIn) {
+        if (!currentUser.isLogin()) {
+            System.out.println("Please login!");
+            return;
+        }
         System.out.println("Input book name:");
         String bookName = scanIn.nextLine().trim();
-        checkOutBook(bookName);
+        if (checkOutBook(bookName)) {
 
+            System.out.println("Thank you! Enjoy the book");
+        } else {
+
+            System.out.println("That book is not available.");
+        }
     }
 
-    public void checkOutBook(String bookName) {
+    private boolean checkOutBook(String bookName) {
         for (Book book : getBooks()) {
             if (book.getName().equals(bookName)) {
-                System.out.println("Thank you! Enjoy the book");
                 book.setCheckedOut(true);
-                return;
+                return true;
             }
         }
-        System.out.println("That book is not available.");
+        return false;
     }
 
     public void returnBook(String bookName) {

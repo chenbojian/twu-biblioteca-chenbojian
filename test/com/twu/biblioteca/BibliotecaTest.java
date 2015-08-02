@@ -4,11 +4,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 import static org.junit.Assert.*;
 
@@ -20,6 +22,7 @@ public class BibliotecaTest {
     private Biblioteca biblioteca;
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();//have \r\n in windows
     private ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+
 
 
     @Before
@@ -86,12 +89,14 @@ public class BibliotecaTest {
     @Test
     public void should_checkout_book_correctly() {
         String bookName = biblioteca.getBooks().get(0).getName();
-
-        biblioteca.checkOutBook(bookName);
+        Scanner scanner = new Scanner(new ByteArrayInputStream(bookName.getBytes()));
+        biblioteca.checkOutBookInConsole(scanner);
+        scanner.close();
         assertTrue(outContent.toString().contains("Thank you! Enjoy the book"));
         outContent.reset();
 
-        biblioteca.checkOutBook("not a book");
+        scanner = new Scanner(new ByteArrayInputStream("not a book".getBytes()));
+        biblioteca.checkOutBookInConsole(scanner);
         assertTrue(outContent.toString().contains("That book is not available."));
 
     }
@@ -146,5 +151,15 @@ public class BibliotecaTest {
     @Test
     public void should_have_a_user_list() {
         assertNotNull(biblioteca.getUsers());
+    }
+
+    @Test
+    public void should_login_before_check_out_books() {
+
+        String bookName = biblioteca.getBooks().get(0).getName();
+        Scanner scanner = new Scanner(new ByteArrayInputStream(bookName.getBytes()));
+        biblioteca.checkOutBookInConsole(scanner);
+        scanner.close();
+        assertTrue(outContent.toString().contains("Please login!"));
     }
 }
