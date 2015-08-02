@@ -54,6 +54,10 @@ public class Biblioteca {
     public boolean processOption(String option, Scanner scanIn) {
 
         String operation = mainMenu.getOptions().get(option);
+        if (operation == null) {
+            System.out.println("Input a valid option");
+            return true;
+        }
         if (operation.equals("List Books")) {
             listBooksInConsole();
         } else if (operation.equals("Checkout Book")) {

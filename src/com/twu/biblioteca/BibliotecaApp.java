@@ -12,12 +12,8 @@ public class BibliotecaApp {
         while (true) {
             biblioteca.listOptionsInConsole();
             String option = scanIn.nextLine().trim();
-            if (biblioteca.getMainMenu().isValidOption(option)) {
-                if (biblioteca.processOption(option, scanIn)) {
-                    break;
-                }
-            } else {
-                System.out.println("Select a valid option!");
+            if (! biblioteca.processOption(option, scanIn)) {
+                break;
             }
         }
         scanIn.close();
