@@ -101,18 +101,22 @@ public class Biblioteca {
     public void checkOutMovieInConsole(Scanner scanIn) {
         System.out.println("Input movie name:");
         String movieName = scanIn.nextLine().trim();
-        checkOutMovie(movieName);
+        if (checkOutMovie(movieName)) {
+            System.out.println("Thank you! Enjoy the movie");
+        } else {
+            System.out.println("That movie is not available.");
+        }
+
     }
 
-    public void checkOutMovie(String movieName) {
+    private boolean checkOutMovie(String movieName) {
         for (Movie movie : getMovies()) {
             if (movie.getName().equals(movieName)) {
-                System.out.println("Thank you! Enjoy the movie");
                 movie.setCheckedOut(true);
-                return;
+                return true;
             }
         }
-        System.out.println("That movie is not available.");
+        return false;
     }
 
     public void checkOutBookInConsole(Scanner scanIn) {

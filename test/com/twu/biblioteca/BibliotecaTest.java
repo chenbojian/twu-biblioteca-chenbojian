@@ -24,7 +24,6 @@ public class BibliotecaTest {
     private ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 
 
-
     @Before
     public void setUp() throws Exception {
         biblioteca = new Biblioteca();
@@ -144,7 +143,9 @@ public class BibliotecaTest {
     @Test
     public void should_checkout_movie_successful() {
         List<Movie> movies = biblioteca.getMovies();
-        biblioteca.checkOutMovie(movies.get(0).getName());
+        Scanner scanner = new Scanner(new ByteArrayInputStream(movies.get(0).getName().getBytes()));
+        biblioteca.checkOutMovieInConsole(scanner);
+        scanner.close();
         assertTrue(movies.get(0).isCheckedOut());
     }
 
