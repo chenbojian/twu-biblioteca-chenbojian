@@ -39,7 +39,9 @@ public class BibliotecaTest {
 
     @Test
     public void should_get_welcome_message() {
-        assertEquals(biblioteca.welcomeCustomer(), "Welcome to Biblioteca!");
+        biblioteca.welcomeCustomer();
+        assertTrue(outContent.toString().contains("Welcome to Biblioteca!"));
+
     }
 
     @Test

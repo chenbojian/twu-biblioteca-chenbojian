@@ -7,7 +7,7 @@ public class BibliotecaApp {
     public static void main(String[] args) {
 
         Biblioteca biblioteca = new Biblioteca();
-        System.out.println(biblioteca.welcomeCustomer());
+        biblioteca.welcomeCustomer();
         Scanner scanIn = new Scanner(System.in);
         while (true) {
             biblioteca.listOptionsInConsole();

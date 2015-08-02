@@ -33,8 +33,8 @@ public class Biblioteca {
         currentUser = new User();
     }
 
-    public String welcomeCustomer() {
-        return "Welcome to Biblioteca!";
+    public void welcomeCustomer() {
+        System.out.println("Welcome to Biblioteca!");
     }
 
     public List<Book> getBooks() {
