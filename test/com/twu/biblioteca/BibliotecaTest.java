@@ -241,7 +241,7 @@ public class BibliotecaTest {
 
     @Test
     public void should_have_show_user_info_option() {
-
+        assertNotNull(biblioteca.getMainMenu().getOptions().get("Show User Info"));
     }
 
 }
