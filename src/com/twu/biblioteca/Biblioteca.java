@@ -28,8 +28,8 @@ public class Biblioteca {
         mainMenu.addOption("Checkout Movie", "Checkout Movie");
         mainMenu.addOption("Login", "Login");
         mainMenu.addOption("Quit", "Quit");
-        users.add(new User("111-1111", "password"));
-        users.add(new User("111-1112", "password2"));
+        users.add(new User("111-1111", "password", "12119911111"));
+        users.add(new User("111-1112", "password2", "1234567899"));
         currentUser = new User();
     }
 

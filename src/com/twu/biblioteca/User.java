@@ -7,14 +7,16 @@ public class User {
     private boolean login;
     private String libraryNumber;
     private String password;
+    private String telephoneNumber;
 
     public User() {
 
     }
 
-    public User(String libraryNumber, String password) {
+    public User(String libraryNumber, String password, String telephoneNumber) {
         this.libraryNumber = libraryNumber;
         this.password = password;
+        this.telephoneNumber = telephoneNumber;
     }
 
     public boolean isLogin() {
@@ -39,5 +41,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getTelephoneNumber() {
+        return telephoneNumber;
+    }
+
+    public void setTelephoneNumber(String telephoneNumber) {
+        this.telephoneNumber = telephoneNumber;
     }
 }

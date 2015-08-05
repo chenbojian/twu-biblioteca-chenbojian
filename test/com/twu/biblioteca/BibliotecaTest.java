@@ -37,6 +37,13 @@ public class BibliotecaTest {
         System.setErr(null);
     }
 
+    private void loginForTest(User user) {
+        String input = user.getLibraryNumber() + "\n" + user.getPassword();
+        Scanner scanner = new Scanner(new ByteArrayInputStream(input.getBytes()));
+        biblioteca.loginInConsole(scanner);
+        scanner.close();
+    }
+
     @Test
     public void should_get_welcome_message() {
         biblioteca.welcomeCustomer();
@@ -90,12 +97,10 @@ public class BibliotecaTest {
 
     @Test
     public void should_checkout_book_correctly() {
-        biblioteca.getCurrentUser().setLogin(true);
+        loginForTest(biblioteca.getUsers().get(0));
 
-        String bookName = biblioteca.getBooks().get(0).getName();
-        Scanner scanner = new Scanner(new ByteArrayInputStream(bookName.getBytes()));
-        biblioteca.checkOutBookInConsole(scanner);
-        scanner.close();
+        checkoutBookForTest(biblioteca.getBooks().get(0).getName());
+        Scanner scanner;
         assertTrue(outContent.toString().contains("Thank you! Enjoy the book"));
         outContent.reset();
 
@@ -105,27 +110,36 @@ public class BibliotecaTest {
 
     }
 
+    private void checkoutBookForTest(String bookName) {
+        Scanner scanner = new Scanner(new ByteArrayInputStream(bookName.getBytes()));
+        biblioteca.checkOutBookInConsole(scanner);
+        scanner.close();
+    }
+
     @Test
     public void should_return_book_correctly() {
+        loginForTest(biblioteca.getUsers().get(0));
+
         Book book = biblioteca.getBooks().get(0);
-        book.setCheckedOut(true);
-        String bookName = book.getName();
-        Scanner scanner = new Scanner(new ByteArrayInputStream(bookName.getBytes()));
-        biblioteca.returnBookInConsole(scanner);
-        scanner.close();
+
+        checkoutBookForTest(book.getName());
+
+        returnBookForTest(book.getName());
         assertTrue(outContent.toString().contains("Thank you for returning the book."));
         outContent.reset();
 
-        scanner = new Scanner(new ByteArrayInputStream(bookName.getBytes()));
-        biblioteca.returnBookInConsole(scanner);
-        scanner.close();
+        returnBookForTest(book.getName());
         assertTrue(outContent.toString().contains("That is not a valid book to return."));
         outContent.reset();
 
-        scanner = new Scanner(new ByteArrayInputStream("not a book".getBytes()));
+        returnBookForTest("not a book");
+        assertTrue(outContent.toString().contains("That is not a valid book to return."));
+    }
+
+    private void returnBookForTest(String bookName) {
+        Scanner scanner = new Scanner(new ByteArrayInputStream(bookName.getBytes()));
         biblioteca.returnBookInConsole(scanner);
         scanner.close();
-        assertTrue(outContent.toString().contains("That is not a valid book to return."));
     }
 
     @Test
@@ -167,35 +181,23 @@ public class BibliotecaTest {
 
     @Test
     public void should_login_before_check_out_books() {
-        String bookName = biblioteca.getBooks().get(0).getName();
-        Scanner scanner = new Scanner(new ByteArrayInputStream(bookName.getBytes()));
-        biblioteca.checkOutBookInConsole(scanner);
-        scanner.close();
+        checkoutBookForTest(biblioteca.getBooks().get(0).getName());
         assertTrue(outContent.toString().contains("Please login!"));
     }
 
     @Test
     public void should_change_current_user_when_login_success() {
-        User user = biblioteca.getUsers().get(0);
-        String input = user.getLibraryNumber() + "\n" + user.getPassword();
-        Scanner scanner = new Scanner(new ByteArrayInputStream(input.getBytes()));
-        biblioteca.loginInConsole(scanner);
-        scanner.close();
+        loginForTest(biblioteca.getUsers().get(0));
         assertTrue(biblioteca.getCurrentUser().isLogin());
     }
 
     @Test
     public void should_add_user_library_number_when_check_out_book() {
         User user = biblioteca.getUsers().get(0);
-        String input = user.getLibraryNumber() + "\n" + user.getPassword();
-        Scanner scanner = new Scanner(new ByteArrayInputStream(input.getBytes()));
-        biblioteca.loginInConsole(scanner);
-        scanner.close();
+        loginForTest(user);
 
         Book book = biblioteca.getBooks().get(0);
-        scanner = new Scanner(new ByteArrayInputStream(book.getName().getBytes()));
-        biblioteca.checkOutBookInConsole(scanner);
-        scanner.close();
+        checkoutBookForTest(book.getName());
 
         assertTrue(book.getBorrower().equals(user));
 
@@ -203,21 +205,23 @@ public class BibliotecaTest {
 
     @Test
     public void should_remove_borrower_when_return_book() {
-        User user = biblioteca.getUsers().get(0);
-        String input = user.getLibraryNumber() + "\n" + user.getPassword();
-        Scanner scanner = new Scanner(new ByteArrayInputStream(input.getBytes()));
-        biblioteca.loginInConsole(scanner);
-        scanner.close();
+        loginForTest(biblioteca.getUsers().get(0));
 
         Book book = biblioteca.getBooks().get(0);
-        scanner = new Scanner(new ByteArrayInputStream(book.getName().getBytes()));
-        biblioteca.checkOutBookInConsole(scanner);
-        scanner.close();
+        checkoutBookForTest(book.getName());
 
-        scanner = new Scanner(new ByteArrayInputStream(book.getName().getBytes()));
-        biblioteca.returnBookInConsole(scanner);
-        scanner.close();
+        returnBookForTest(book.getName());
 
         assertNull(book.getBorrower());
+    }
+
+    @Test
+    public void should_have_telephone_number_in_user() {
+        try {
+            User.class.getMethod("getTelephoneNumber");
+        } catch (NoSuchMethodException e) {
+            throw new AssertionError("Do not have field telephoneNumber");
+
+        }
     }
 }
