@@ -167,11 +167,20 @@ public class BibliotecaTest {
 
     @Test
     public void should_login_before_check_out_books() {
-
         String bookName = biblioteca.getBooks().get(0).getName();
         Scanner scanner = new Scanner(new ByteArrayInputStream(bookName.getBytes()));
         biblioteca.checkOutBookInConsole(scanner);
         scanner.close();
         assertTrue(outContent.toString().contains("Please login!"));
+    }
+
+    @Test
+    public void should_change_current_user_when_login_success() {
+        User user = biblioteca.getUsers().get(0);
+        String input = user.getLibraryNumber() + "\n" + user.getPassword();
+        Scanner scanner = new Scanner(new ByteArrayInputStream(input.getBytes()));
+        biblioteca.loginInConsole(scanner);
+        scanner.close();
+        assertTrue(biblioteca.getCurrentUser().isLogin());
     }
 }

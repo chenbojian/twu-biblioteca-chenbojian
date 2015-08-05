@@ -28,6 +28,8 @@ public class Biblioteca {
         mainMenu.addOption("Checkout Movie", "Checkout Movie");
         mainMenu.addOption("Login", "Login");
         mainMenu.addOption("Quit", "Quit");
+        users.add(new User("111-1111", "password"));
+        users.add(new User("111-1112", "password2"));
         currentUser = new User();
     }
 
@@ -73,6 +75,28 @@ public class Biblioteca {
         }
 
         return true;
+    }
+
+    public void loginInConsole(Scanner scanner) {
+        String libraryNumber = scanner.nextLine().trim();
+        String password = scanner.nextLine().trim();
+        if (login(libraryNumber, password)) {
+            System.out.println("Login Success!");
+        } else {
+            System.out.println("Login Failed!");
+        }
+    }
+
+    private boolean login(String libraryNumber, String password) {
+        for (User user : getUsers()) {
+            if (user.getLibraryNumber().equals(libraryNumber) &&
+                    user.getPassword().equals(password)) {
+                user.setLogin(true);
+                setCurrentUser(user);
+                return true;
+            }
+        }
+        return false;
     }
 
     public void listBooksInConsole() {
@@ -185,6 +209,10 @@ public class Biblioteca {
 
     public User getCurrentUser() {
         return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
     }
 
     public void listOptionsInConsole() {
