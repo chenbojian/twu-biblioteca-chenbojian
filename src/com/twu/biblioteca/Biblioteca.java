@@ -222,4 +222,14 @@ public class Biblioteca {
     public void listOptionsInConsole() {
         System.out.println((getMainMenu().show()));
     }
+
+    public void showUserInfoInConsole() {
+        if (currentUser.isLogin()) {
+            System.out.println(currentUser.getLibraryNumber());
+            System.out.println(currentUser.getTelephoneNumber());
+        } else {
+            System.out.println("Not available!");
+        }
+
+    }
 }

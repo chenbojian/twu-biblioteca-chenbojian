@@ -221,7 +221,27 @@ public class BibliotecaTest {
             User.class.getMethod("getTelephoneNumber");
         } catch (NoSuchMethodException e) {
             throw new AssertionError("Do not have field telephoneNumber");
-
         }
     }
+
+    @Test
+    public void can_not_show_user_info_if_not_login() {
+        biblioteca.showUserInfoInConsole();
+        assertTrue(outContent.toString().contains("Not available!"));
+    }
+
+    @Test
+    public void can_show_user_info_if_login() {
+        User user = biblioteca.getUsers().get(0);
+        loginForTest(user);
+        biblioteca.showUserInfoInConsole();
+        assertTrue(outContent.toString().contains(user.getLibraryNumber()));
+        assertTrue(outContent.toString().contains(user.getTelephoneNumber()));
+    }
+
+    @Test
+    public void should_have_show_user_info_option() {
+
+    }
+
 }
