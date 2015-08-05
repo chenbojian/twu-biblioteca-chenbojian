@@ -183,4 +183,21 @@ public class BibliotecaTest {
         scanner.close();
         assertTrue(biblioteca.getCurrentUser().isLogin());
     }
+
+    @Test
+    public void should_add_user_library_number_when_check_out_book() {
+        User user = biblioteca.getUsers().get(0);
+        String input = user.getLibraryNumber() + "\n" + user.getPassword();
+        Scanner scanner = new Scanner(new ByteArrayInputStream(input.getBytes()));
+        biblioteca.loginInConsole(scanner);
+        scanner.close();
+
+        Book book = biblioteca.getBooks().get(0);
+        scanner = new Scanner(new ByteArrayInputStream(book.getName().getBytes()));
+        biblioteca.checkOutBookInConsole(scanner);
+        scanner.close();
+
+        assertTrue(book.getBorrower().equals(user));
+
+    }
 }

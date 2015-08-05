@@ -163,6 +163,7 @@ public class Biblioteca {
         for (Book book : getBooks()) {
             if (book.getName().equals(bookName)) {
                 book.setCheckedOut(true);
+                book.setBorrower(currentUser);
                 return true;
             }
         }
