@@ -200,4 +200,24 @@ public class BibliotecaTest {
         assertTrue(book.getBorrower().equals(user));
 
     }
+
+    @Test
+    public void should_remove_borrower_when_return_book() {
+        User user = biblioteca.getUsers().get(0);
+        String input = user.getLibraryNumber() + "\n" + user.getPassword();
+        Scanner scanner = new Scanner(new ByteArrayInputStream(input.getBytes()));
+        biblioteca.loginInConsole(scanner);
+        scanner.close();
+
+        Book book = biblioteca.getBooks().get(0);
+        scanner = new Scanner(new ByteArrayInputStream(book.getName().getBytes()));
+        biblioteca.checkOutBookInConsole(scanner);
+        scanner.close();
+
+        scanner = new Scanner(new ByteArrayInputStream(book.getName().getBytes()));
+        biblioteca.returnBookInConsole(scanner);
+        scanner.close();
+
+        assertNull(book.getBorrower());
+    }
 }

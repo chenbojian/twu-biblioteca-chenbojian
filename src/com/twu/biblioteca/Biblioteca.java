@@ -183,8 +183,11 @@ public class Biblioteca {
 
     private boolean returnBook(String bookName) {
         for (Book book : getBooks()) {
-            if (book.getName().equals(bookName) && book.isCheckedOut()) {
+            if (book.getName().equals(bookName)
+                    && book.isCheckedOut()
+                    && book.getBorrower().equals(currentUser)) {
                 book.setCheckedOut(false);
+                book.setBorrower(null);
                 return true;
             }
         }
