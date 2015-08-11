@@ -240,11 +240,6 @@ public class BibliotecaTest {
     }
 
     @Test
-    public void should_have_show_user_info_option() {
-        assertNotNull(biblioteca.getMainMenu().getOptions().get("Show User Info"));
-    }
-
-    @Test
     public void should_add_user_info_into_book_if_checkout() {
         loginForTest(biblioteca.getUsers().get(0));
         checkoutBookForTest(biblioteca.getBooks().get(0).getName());
@@ -267,8 +262,15 @@ public class BibliotecaTest {
     }
 
     @Test
-    public void should_have_option_to_show_user_info_after_login() {
-
+    public void should_not_have_option_to_show_user_info_before_login() {
+        assertFalse(biblioteca.getMainMenu().show().contains("Show User Info"));
     }
+
+    @Test
+    public void should_have_option_to_show_user_after_login() {
+        loginForTest(biblioteca.getUsers().get(0));
+        assertTrue(biblioteca.getMainMenu().show().contains("Show User Info"));
+    }
+
 
 }
