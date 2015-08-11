@@ -244,4 +244,31 @@ public class BibliotecaTest {
         assertNotNull(biblioteca.getMainMenu().getOptions().get("Show User Info"));
     }
 
+    @Test
+    public void should_add_user_info_into_book_if_checkout() {
+        loginForTest(biblioteca.getUsers().get(0));
+        checkoutBookForTest(biblioteca.getBooks().get(0).getName());
+
+        assertTrue(biblioteca.getBooks().get(0).getBorrower().getLibraryNumber().equals(
+                biblioteca.getUsers().get(0).getLibraryNumber()
+        ));
+
+    }
+
+    @Test
+    public void should_error_if_the_user_who_return_book_is_not_borrower() {
+        loginForTest(biblioteca.getUsers().get(0));
+        checkoutBookForTest(biblioteca.getBooks().get(0).getName());
+
+        loginForTest(biblioteca.getUsers().get(1));
+        returnBookForTest(biblioteca.getBooks().get(0).getName());
+
+        assertFalse(outContent.toString().contains("That's not a valid book to return"));
+    }
+
+    @Test
+    public void should_have_option_to_show_user_info_after_login() {
+
+    }
+
 }
