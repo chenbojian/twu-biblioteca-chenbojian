@@ -70,6 +70,8 @@ public class Biblioteca {
             listMoviesInConsole();
         } else if (operation.equals("Checkout Movie")) {
             checkOutMovieInConsole(scanIn);
+        } else if (operation.equals("Show User Info")) {
+            showUserInfoInConsole();
         } else if (operation.equals("Login")) {
             loginInConsole(scanIn);
         } else if (operation.equals("Quit")) {

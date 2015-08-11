@@ -272,5 +272,11 @@ public class BibliotecaTest {
         assertTrue(biblioteca.getMainMenu().show().contains("Show User Info"));
     }
 
+    @Test
+    public void should_show_user_info_in_console() {
+        loginForTest(biblioteca.getUsers().get(0));
+        biblioteca.showUserInfoInConsole();
+        assertTrue(outContent.toString().contains("111-1111"));
+    }
 
 }
